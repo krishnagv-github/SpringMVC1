@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +31,18 @@ public class CustomerController {
 	public String crud() {
 		return "CustomerCRUD";
 	}
+	
+	@RequestMapping(value="/LoadCustomer", method = RequestMethod.GET)
+	public String loadCustomer() {
+		return "LoadCustomer";
+	}
 
-	@RequestMapping(value = "/loadCustomer", method = RequestMethod.GET)
-	public Customers loadCustomer(@PathVariable("custID") long id) {
-		return csi.loadCustomer(id);
+	@RequestMapping(value = "/LoadCustomer/{custID}", method = RequestMethod.POST)
+	public String loadCustomer(@PathVariable("custID") String id , ModelMap model) {
+		Long custID = Long.parseLong(id);
+		Customers cust = csi.loadCustomer(custID);
+		model.addAttribute("Customer", cust);
+		return "PrintCustomer";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)

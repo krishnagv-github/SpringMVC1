@@ -14,7 +14,7 @@
 <h4 class="text-center"><a href="Customers/addCustomer">Add new Customer</a></h4>
 <h4 class="text-center"><a href="Customers/delCustomer">Delete Customer</a></h4>
 <h4 class="text-center"><a href="Customers/updCustomer">Update Customer</a></h4>
-<h4 class="text-center"><a href="Customers/loadCustomer">Load Customer</a></h4>
+<h4 class="text-center"><a href="LoadCustomer">Load Customer</a></h4>
 </div>
 
 </body>
