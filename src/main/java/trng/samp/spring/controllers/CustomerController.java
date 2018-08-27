@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/Customers")
+@RequestMapping("/CustomerCRUD")
 public class CustomerController {
 
 	@Autowired
@@ -22,31 +22,33 @@ public class CustomerController {
 	Customers cust = new Customers();
 
 	// Test Handler
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home() {
+//		return "index";
+//	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "index";
+	public String crud() {
+		return "CustomerCRUD";
 	}
 
-	@RequestMapping(value = "/{custID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/loadCustomer", method = RequestMethod.GET)
 	public Customers loadCustomer(@PathVariable("custID") long id) {
 		return csi.loadCustomer(id);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ResponseEntity<?> addCustomer(@RequestBody Customers cust) {
-		boolean status = csi.addCustomer(cust);
-		return status ? new ResponseEntity<>(HttpStatus.CREATED) : new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	public void addCustomer(@RequestBody Customers cust) {
+		csi.addCustomer(cust);
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateCustomer(@RequestBody Customers cust) {
+	public void updateCustomer(@RequestBody Customers cust) {
 		boolean status = csi.updateCustomer(cust);
-		return status ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
 	}
 
 	@RequestMapping(value = "/{custID}", method = RequestMethod.DELETE)
-	public boolean deleteCustomer(@PathVariable("custID") long id) {
-		return csi.deleteCustomerByHql(id);
+	public void deleteCustomer(@PathVariable("custID") long id) {
+		csi.deleteCustomerByHql(id);
 	}
 
 }

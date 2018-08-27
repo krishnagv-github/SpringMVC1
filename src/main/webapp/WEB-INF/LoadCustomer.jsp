@@ -4,11 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Index</title>
+<title>Load Customer</title>
 </head>
 <body>
 <div align="center">
-<h1 class="text-center"><a href = "/CustomerCRUD"> Customers</a></h1>
+<h1 class="text-center">Load Customer</h1>
+<form method="GET" action="loadCustomer">
+Please enter the id of the customer
+<input type="number", min="1">
+<button>Submit</button>
+</form>
 </div>
 </body>
 </html>
