@@ -1,6 +1,8 @@
 package trng.samp.spring.dao;
 
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +14,8 @@ import trng.samp.spring.utils.HibernateUtils;
 @Repository
 public class OrderDaoImpl implements OrderDaoInt {
 	
+	final static Logger logger = Logger.getLogger(CustDaoImpl.class);
+	
 	SessionFactory sf;
 	
 	public OrderDaoImpl() {
@@ -19,6 +23,7 @@ public class OrderDaoImpl implements OrderDaoInt {
 	}
 
 	public boolean createOrder(Orders order) {
+		logger.debug("Create Order DAO method called.");
 		System.out.println("Order"+ order);
 		Session session = sf.openSession();
 		session.getTransaction().begin();
@@ -29,6 +34,7 @@ public class OrderDaoImpl implements OrderDaoInt {
 	}
 
 	public boolean updateOrder(Orders order) {
+		logger.debug("Update Order DAO method called.");
 		Session session = sf.openSession();
 		session.getTransaction().begin();
 		session.update(order);
@@ -38,6 +44,7 @@ public class OrderDaoImpl implements OrderDaoInt {
 	}
 
 	public boolean deleteOrder(Long orderID) {
+		logger.debug("Delete Order DAO method called.");
 		Session session = sf.openSession();
 		session.getTransaction().begin();
 		try {
@@ -53,6 +60,7 @@ public class OrderDaoImpl implements OrderDaoInt {
 	}
 
 	public Orders getOrder(Long orderID) {
+		logger.debug("Get Order DAO method called.");
 		Session session = sf.openSession();
 		session.getTransaction().begin();
 		Orders order = (Orders) session.get(Orders.class, orderID);

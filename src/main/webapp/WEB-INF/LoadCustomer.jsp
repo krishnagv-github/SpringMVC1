@@ -9,7 +9,7 @@
 <body>
 <div align="center">
 <h1 class="text-center">Load Customer</h1>
-<form action="LoadCustomer" method="POST" >
+<form action="LoadCustomer" method="GET" >
 Please enter the id of the customer
 <input type="text" name="custID">
 <button type="submit">Submit</button>
